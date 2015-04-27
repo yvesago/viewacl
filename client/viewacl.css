@@ -1,0 +1,138 @@
+/* CSS declarations go here */
+/* Style page principale */
+.map {
+width:95%;
+margin-left: auto; margin-right: auto;
+font-size: 12px;
+}
+.note {
+float : right;
+margin-right: 10px;
+margin-top: 10px;
+background-color:#FFFB02;
+}
+/* Style pages vlans*/
+.subtitle {
+ color:white;
+ margin:2px; 
+ padding:2px 5px 2px 5px; 
+ border:1px solid #C3C3B9;
+ background-color:#7C7D6B;
+ font-weight: bold;
+ font-size: 12px;
+ width:15%;
+}
+.subsubtitle {
+ background-image: url("nClient.png");
+ background-repeat: no-repeat;
+ margin:2px; 
+ padding:2px 5px 2px 37px; 
+ border:0px;
+ font-size: 12px;
+ width:20%;
+ height:32px;
+}
+.subnet {
+margin:2px; 
+padding:2px 5px 2px 5px; 
+border:1px solid #C3C3B9;
+}
+.machineint {
+margin:2px; 
+padding:2px 5px 2px 5px; 
+border:1px solid red;
+width:90%;
+}
+.machineext {
+margin:2px; 
+padding:2px 5px 2px 5px; 
+width:90%;
+}
+.reseauxint {
+margin:2px; 
+padding:2px 5px 2px 5px; 
+border:1px solid red;
+width:90%;
+text-align:center;
+}
+.reseauxext {
+margin:2px; 
+padding:2px 5px 2px 5px; 
+width:90%;
+}
+.machine, .net{
+margin:2px; 
+display: inline-block;
+}
+.ServInt{
+ background-image: url("ServInt.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.ServPub{
+ background-image: url("ServPub.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.Client{
+ background-image: url("Client.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.nServInt{
+ background-image: url("nServInt.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.nServPub{
+ background-image: url("nServPub.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.nClient{
+ background-image: url("nClient.png");
+ width: 32px;
+ height: 32px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+}
+.lineorange{
+ color: #FF9900
+}
+.linered{
+ color: #880000
+}
+.linegreen{
+ color: #008800
+}
+.togglebutton label {
+  margin: 20px 10px;
+  width: 200px;
+}
+.togglebutton {
+ height: 64px;
+ float: right;
+}
+.optAff .clickable {
+ float: right;
+  margin: 20px 10px;
+}
+.reload {
+ float: right;
+}

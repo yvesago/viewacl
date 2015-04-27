@@ -1,0 +1,454 @@
+<!-- 
+
+//  Start page
+
+-->
+<template name="start">
+  {{> header}}
+
+<div class="container">
+
+<div class="panel panel-default">
+    <div class="panel-body">
+<div class="edit">
+ {{#with helpMessage n="aideMain"}}
+ <div class="bs-callout bs-callout-warning">
+  {{#markdown}}{{mContent}}{{/markdown}}
+  {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="glyphicon glyphicon-pencil clickable messMain"></span>{{/if}}
+ </div>
+ {{/with}}
+</div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+    <H3>Vlans</H3>
+<ul>
+{{#each data}}
+ <li> <abbr title="{{dateFormat created format="llll"}} - {{dateFormat modified format="llll"}}" class="initialism">Modifié</abbr>
+  <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable vlanClear"></span>
+ <span href="#edit" title="Modifier" class="glyphicon glyphicon-pencil clickable vlanEdit"></span>
+ <span href="#view" data-toggle="tooltip" data-placement="top" title="Voir" class="glyphicon glyphicon-dashboard clickable aclView"></span> | 
+  {{nom}} </li>
+{{/each}}
+</ul>
+   </div>
+</div>
+
+<span title="Ajouter" class="vlanAdd clickable btn btn-primary btn-fab btn-raised mdi-content-add"></span>
+
+{{> insertVlanForm }}
+{{> updateVlanForm }}
+{{> updateMessageForm }}
+</div>
+</template>
+
+<template name="updateVlanForm">
+<div class="modal fade" id="updateVlanForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Modification Vlan</h4>
+   </div>
+   <div class="modal-body" >
+
+   {{> quickForm collection="Vlans" validation="keyup" id="upVlanForm"
+       template="bootstrap3-horizontal" fields="nom,content"
+       doc=selectedVlan type="update"}}
+
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+<template name="insertVlanForm">
+<div class="modal fade" id="insertVlanForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Ajout Vlan</h4>
+   </div>
+   <div class="modal-body" >
+
+   {{> quickForm collection="Vlans" validation="keyup" id="addVlanForm"
+       template="bootstrap3-horizontal" fields="nom,content" type="insert"}}
+
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+
+<template name="updateMessageForm">
+<div class="modal fade" id="updateMessageForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Message</h4>
+   </div>
+   <div class="modal-body" >
+
+   {{> quickForm collection="Messages" validation="keyup" id="docForm"
+       template="bootstrap3-horizontal"
+       omitFields="mNom" doc=selectedDoc type="update"}}
+
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+
+<!--
+
+// Admin page to manage config
+
+-->
+<template name="config">
+  {{> header}}
+
+<div class="container">
+
+    <h3>Politique des accès globaux</h3>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+<ul>
+{{#each data}}
+ <li><tt><span class="line{{color}}">{{regex}}</span></tt><br />
+ {{desc}}
+ <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable confClear"></span>
+ <span href="#view" title="Modifier" class="glyphicon glyphicon-pencil clickable confEdit"></span></li>
+{{/each}}
+</ul>
+    </div>
+</div>
+
+<span title="Ajouter" class="confAdd clickable btn btn-primary btn-fab btn-raised mdi-content-add"></span>
+
+</div>
+
+{{> updateConfigForm }}
+{{> insertConfigForm }}
+
+</template>
+
+<template name="updateConfigForm">
+<div class="modal" id="updateConfigForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Config</h4>
+  </div>
+   <div class="modal-body" >
+
+   {{> quickForm collection="Configs" validation="keyup" id="upConfForm"
+       template="bootstrap3-horizontal"
+       doc=selectedConf type="update"}}
+
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+<template name="insertConfigForm">
+<div class="modal" id="insertConfigForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Config</h4>
+  </div>
+   <div class="modal-body" >
+
+   {{> quickForm collection="Configs" validation="keyup" id="addConfForm"
+       template="bootstrap3-horizontal" type="insert"}}
+
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+<!--
+
+// Admin page to manage roles
+
+-->
+<template name="admin">
+  {{> header}}
+
+<div class="container">
+  <h3>Manage users and roles</h3>
+   <div class="container">
+    {{> accountsAdmin}}
+   </div>
+</div>
+</template>
+
+<!-- 
+
+// signin page
+
+  -->
+<template name="signin">
+ <div class="jumbotron">
+  <h1>Bienvenue</h1>
+  <p>Pour accéder à cette application vous devez être identifié</p>
+  <p>
+   <a class="btn btn-primary login-btn" role="button">Se connecter</a> 
+  </p>
+ </div>
+ Local user (insecure clear text!) :  {{> loginButtons}} 
+</template>
+
+
+<!-- // various // -->
+
+<template name="loading">
+  <h1><i class="fa fa-spinner fa-spin"></i>  Loading...</h1>
+</template>
+
+<template name="not_found">
+  <h3>404 - Not found</h3>
+</template>
+
+<template name="invalid-access">
+  <h3>403 Forbidden - Invalid Access</h3>
+</template>
+
+<template name="header">
+ <div class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/"><i class="fa fa-spinner"></i> {{appName}}</a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+            {{#if isInRole 'admin'}}
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/config">Config</a></li>
+            {{/if}}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       {{> loginButtons }} 
+    </ul>
+  </div>
+ </div>
+</template>
+
+<!--
+
+ViewAcl page
+
+-->
+
+<template name="ViewAcl">
+  {{> header}}
+
+<div class="container">
+<span class="reload clickable btn btn-primary btn-fab btn-raised mdi-navigation-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>
+<div class="edit well">
+ {{#with helpMessage n="aideACL"}}
+ {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="clickable messACL">
+  {{#markdown}}{{mContent}}{{/markdown}}</span>
+  {{else}}
+  {{#markdown}}{{mContent}}{{/markdown}}
+ {{/if}}
+ {{/with}}
+</div>
+
+ <h2>{{nom}}</h2> 
+
+{{#if waiting}}
+<div class="progress progress-striped active">
+  <div class="progress-bar" style="width: 100%"></div>
+</div>
+{{/if}}
+
+<div class="optAff">
+<div class="mDNS clickable togglebuttonxx">
+ <label>
+   DNS (long) <input checked="{{vDNS}}" type="checkbox"> 
+ </label>
+</div>
+<div class="shortName clickable togglebuttonxx"> 
+ <label>
+  Affichage compact <input checked="{{shortName}}" type="checkbox"> 
+ </label>
+</div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+<h3>{{getVlan.name}} - {{getVlan.desc}}</h3>
+
+
+<fieldset class="machineint">
+<legend class="subtitle">Accès complet aux réseaux internes</legend>    
+<div class="edit well well-sm">
+ {{#with helpMessage n="aideFull"}}
+ {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="clickable messACL">
+  {{#markdown}}{{mContent}}{{/markdown}}</span>
+  {{else}}
+  {{#markdown}}{{mContent}}{{/markdown}}
+ {{/if}}
+ {{/with}}
+</div>
+
+{{#each getVlan.fullnet}}
+ <tt> <span class="line{{color}}">{{line}}</span></tt>
+   {{#if com}}
+    ***  <span class="line{{color}}">{{com}}</span> ***
+   {{/if}}
+   <br />
+{{/each}}
+</fieldset>
+
+
+<fieldset class="reseauxint">
+<legend class="subtitle">Réseaux internes</legend>    
+{{#each getVlan.intNetworks}}
+ {{> net}}
+{{/each}}
+</fieldset>
+
+<fieldset class="machineint">
+<legend class="subtitle">Machines internes</legend>    
+{{#each getVlan.intSubNet}}
+  {{> subnet}}
+{{/each}}
+{{#each getVlan.intMachines}}
+  {{> machine}}
+{{/each}}
+</fieldset>
+
+<fieldset class="reseauxext">
+<legend class="subtitle">Réseaux externes</legend>    
+{{#each getVlan.extNet}}
+ {{> net}}
+{{/each}}
+</fieldset>
+
+<fieldset class="machineext">
+<legend class="subtitle">Machines externes</legend>    
+{{#each getVlan.extSubNet}}
+  {{> subnet}}
+{{/each}}
+{{#each getVlan.extMachines}}
+  {{> machine}}
+{{/each}}
+</fieldset>
+
+{{> tContent}}
+
+
+{{> updateMessageForm }}
+ </div>
+</div>
+
+</div>
+</template>
+
+<template name="tContent">
+{{#with viewContent}}
+ <div class="mContent clickable">
+ <span class="glyphicon glyphicon-collapse-up"></span>
+ Masquer</div>
+ <pre>{{../content}}</pre>
+ {{else}}
+ <div class="vContent clickable">
+ <span class="glyphicon glyphicon-collapse-down"></span>
+ Afficher origine </div>
+{{/with}}
+
+</template>
+
+<!--
+ Subnet subtemplate
+-->
+<template name="subnet">
+<fieldset class="subnet">
+<legend href="#viewNet" class="subsubtitle net clickable">subnet int: {{net.base}}/{{net.bitmask}}</legend>
+{{#each inMachine}}
+  {{> machine}}
+{{/each}}
+</fieldset>
+</template>
+
+<!--
+ Net subtemplate
+-->
+<template name="net">
+<span href="#viewNet" class="net clickable">
+<span class="n{{_type}}"></span>
+{{net.base}}/{{net.bitmask}}
+</span>
+ {{> viewNet}}
+</template>
+
+<!--
+ Machine subtemplate
+-->
+<template name="machine">
+<span href="#viewMachine" title="{{_ip}}" class="machine clickable">
+<span class="{{_type}}"></span>
+{{mName this}}
+</span>
+ {{> viewMachine}}
+</template>
+
+<!--
+ View acl lines
+-->
+
+<template name="viewMachine">
+<div class="modal fade" id="viewMachine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Lignes concernant précisément {{m._ip}}</h4>
+   </div>
+   <div class="modal-body" >
+<pre>{{#each m.line}}{{this}}
+{{/each}}
+</pre>
+   </div>
+   <div class="modal-body" >
+  <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+   </div>
+  </div>
+ </div>
+</div>
+</template>
+
+<template name="viewNet">
+<div class="modal fade" id="viewNet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+ <h4 class="modal-title">Lignes concernant précisément {{m.net.base}} {{m.net.hostmask}}</h4>
+   </div>
+   <div class="modal-body" >
+<pre>{{#each m.line}}{{this}}
+{{/each}}
+</pre>
+   </div>
+   <div class="modal-footer" >
+  <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+   </div>
+  </div>
+ </div>
+</div>
+</template>
