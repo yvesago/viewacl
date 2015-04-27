@@ -1,0 +1,11 @@
+TODO
+----
+
+- add order in Configs rules
+- add network collection to find name of known network
+- add reactive table for admin
+- fix admin ui bug
+- better spinner ?
+- i18n
+- doc install, deploy, ...
+- IPv6
