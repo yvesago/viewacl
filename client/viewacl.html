@@ -420,9 +420,11 @@ ViewAcl page
  <h4 class="modal-title">Lignes concernant précisément {{m._ip}}</h4>
    </div>
    <div class="modal-body" >
-<pre>{{#each m.line}}{{this}}
-{{/each}}
-</pre>
+<div class="lines">
+ {{#each m.line}}
+ <span class="line{{parseLine this}}"><tt>{{this}}</tt></span><br />
+ {{/each}}
+</div>
    </div>
    <div class="modal-body" >
   <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
@@ -441,9 +443,11 @@ ViewAcl page
  <h4 class="modal-title">Lignes concernant précisément {{m.net.base}} {{m.net.hostmask}}</h4>
    </div>
    <div class="modal-body" >
-<pre>{{#each m.line}}{{this}}
-{{/each}}
-</pre>
+<div class="lines">
+ {{#each m.line}}
+ <span class="line{{parseLine this}}"><tt>{{this}}</tt></span><br />
+ {{/each}}
+</div>
    </div>
    <div class="modal-footer" >
   <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>

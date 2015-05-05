@@ -145,3 +145,10 @@ display: inline-block;
 .item:before {
     content: "➤ ";
 }
+.lines {
+  display: block;
+  text-align: left;
+  border: 1px solid #bbb;
+  margin: 8px;
+  background: #eee;
+}

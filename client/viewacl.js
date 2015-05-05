@@ -100,6 +100,13 @@ Template.ViewAcl.rendered= function () {
     reload();
 };
 
+Template.registerHelper('parseLine', function (l) {
+    if (!l) return '';
+    if ( l.match(/out permit \w+ any/) )
+        return 'red';
+    return;
+});
+
 Template.registerHelper('mName', function (o) {
     if (!o) return '';
     var name = o._ip;
