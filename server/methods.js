@@ -7,7 +7,7 @@ Meteor.methods({
             data = data.split("\n");
 
             var j = [];
-            Configs.find({}).forEach(function(d) {
+            Configs.find({}, {sort: {rank: 1}}).forEach(function(d) {
                 j.push({'reg':d.regex,'com':d.desc,'color':d.color});
             }); 
             var conf = {'fullPolicy' : j};

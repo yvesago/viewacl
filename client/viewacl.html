@@ -119,14 +119,16 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-<ul>
+<div id="list">
 {{#each data}}
- <li><tt><span class="line{{color}}">{{regex}}</span></tt><br />
- {{desc}}
+ <div class="item"><tt><span class="line{{color}}">{{regex}}</span></tt>
  <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable confClear"></span>
- <span href="#view" title="Modifier" class="glyphicon glyphicon-pencil clickable confEdit"></span></li>
+ <span href="#view" title="Modifier" class="glyphicon glyphicon-pencil clickable confEdit"></span>
+ <br />
+ {{desc}}
+ </div>
 {{/each}}
-</ul>
+</div>
     </div>
 </div>
 

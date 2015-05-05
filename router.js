@@ -66,7 +66,7 @@ Router.map(function () {
   this.route('config', {
     path: '/config',
     onBeforeAction: [filters.authenticate,filters.wait],
-    data: function() {return Configs.find({}, {sort: {color: -1}})}
+    data: function() {return Configs.find({}, {sort: {rank: 1}})}
   });
  this.route('ViewAcl', { 
       path: '/viewacl/:_id',

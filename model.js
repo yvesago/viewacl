@@ -114,7 +114,14 @@ Schemas.configs = new SimpleSchema({
           firstOption: 'Choisir' 
          },
          optional: true
-         }
+         },
+    rank : {
+         type: Number,
+         decimal: true,
+         label: "Ordre d'application",
+         optional: true,
+         defaultValue: 0
+    }
 });
 
 

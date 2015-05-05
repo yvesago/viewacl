@@ -276,4 +276,43 @@ Template.config.events ({
 
 });
 
+/*
 
+ Drag and Drop list
+ From
+ https://github.com/meteor/meteor/tree/devel/examples/unfinished/reorderable-list
+ with fixes
+
+*/
+
+
+SimpleRationalRanks = {
+  beforeFirst: function (firstRank) { return firstRank - 1; },
+  between: function (beforeRank, afterRank) {
+      return Math.round( ((beforeRank + afterRank) / 2) * 10 ) / 10; }, // decimal round
+  afterLast: function (lastRank) { return lastRank + 1; }
+};
+
+Template.config.rendered = function () {
+  $(this.find('#list')).sortable({ // uses the 'sortable' interaction from jquery ui
+    stop: function (event, ui) { // fired when an item is dropped
+      var el = ui.item.get(0), before = ui.item.prev().get(0), after = ui.item.next().get(0);
+
+      var newRank;
+      if (!before) { // moving to the top of the list
+        newRank = SimpleRationalRanks.beforeFirst(Blaze.getData(after).rank);
+
+      } else if (!after) { // moving to the bottom of the list
+        newRank = SimpleRationalRanks.afterLast(Blaze.getData(before).rank);
+
+      } else {
+        newRank = SimpleRationalRanks.between(
+          Blaze.getData(before).rank,
+          Blaze.getData(after).rank);
+      }
+
+      Configs.update(Blaze.getData(el)._id, {$set: {rank: newRank}});
+
+    }
+  });
+};

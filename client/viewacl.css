@@ -136,3 +136,12 @@ display: inline-block;
 .reload {
  float: right;
 }
+#list div {
+  padding: 10px;
+  height: 2.8em;
+  margin: 8px;
+  cursor: move;
+}
+.item:before {
+    content: "➤ ";
+}
