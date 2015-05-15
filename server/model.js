@@ -15,6 +15,7 @@ ServerSchemas.networks = new SimpleSchema({
     title: {
          type: String,
          max: 100,
+         optional: true
          },
     vlan: {
          type: String,
