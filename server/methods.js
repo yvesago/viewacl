@@ -15,6 +15,49 @@ Meteor.methods({
             var v = new Vlan(conf); 
             v.Parse(data);
 
+            v.newExtNet = [];
+
+            // Post traitement
+            // Create or update internal networks titles
+             _.each(v.intNetworks, function(n) {
+                 if (! n.net) return;
+                 var inNet = Networks.findOne({net : n.net.base + '/' + n.net.bitmask})
+                 if (!inNet) {
+                 // console.log('CREATE');
+                  Networks.insert({
+                    net: n.net.base + '/' + n.net.bitmask,
+                    vlan: v.name,
+                    title: v.desc,
+                    type: n._type
+                    })
+                 }
+                 else {
+                  //console.log('UPDATE');
+                      Networks.update({_id:inNet._id},
+                      {$set: {
+                        vlan: v.name,
+                        title: v.desc,
+                        type: n._type
+                        }})
+                };
+
+             });
+
+            // Update external networks title
+             _.each(v.extNet, function(n) {
+                 var extNet = Networks.findOne({net : n.net.base + '/' + n.net.bitmask})
+                 var newNet = n;
+                 if (extNet) {
+                     newNet.title = extNet.vlan + ' - ' + extNet.title
+                     newNet._type = extNet.type
+                 }
+                 else {
+                     newNet.title = n.net.base + '/' + n.net.bitmask
+                 };
+                 v.newExtNet.push(newNet);
+             });
+
+
             if(dns) {
             _.each(v.intMachines, function(i) { i.name(); });
             _.each(v.extMachines, function(i) { i.name(); });
