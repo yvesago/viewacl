@@ -334,8 +334,8 @@ ViewAcl page
 
 <fieldset class="reseauxext">
 <legend class="subtitle">Réseaux externes</legend>    
-{{#each getVlan.extNet}}
- {{> net}}
+{{#each getVlan.newExtNet}}
+ {{> netExt}}
 {{/each}}
 </fieldset>
 
@@ -392,6 +392,17 @@ ViewAcl page
 <span href="#viewNet" class="net clickable">
 <span class="n{{_type}}"></span>
 {{net.base}}/{{net.bitmask}}
+</span>
+ {{> viewNet}}
+</template>
+
+<!--
+ ExtNet subtemplate
+-->
+<template name="netExt">
+<span href="#viewNet" title="{{net.base}}/{{net.bitmask}}" class="net clickable">
+<span class="n{{_type}}"></span>
+{{title}}
 </span>
  {{> viewNet}}
 </template>
