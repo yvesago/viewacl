@@ -1,5 +1,6 @@
 
 var Vlan = Meteor.npmRequire('parseacl');
+var Nmask = Meteor.npmRequire('netmask').Netmask;
 
 Meteor.methods({
     'getVlan': function getVlan(data, dns) {
@@ -53,6 +54,17 @@ Meteor.methods({
                  }
                  else {
                      newNet.title = n.net.base + '/' + n.net.bitmask
+                     // Search if base is a subnet of a known network
+                     var searchNet = n.net.base.match(/^(\d+\.\d+)\./);
+                     var reg = new RegExp('^' + searchNet[1] );
+                     var knownNet = Networks.find({'net': {$regex: reg}}).fetch();
+                      knownNet.forEach(function(k) {
+                        var block = new Nmask(k.net);
+                        if (block.contains(n.net)) {
+                            newNet.title = k.vlan + ' - ' + k.title + " (Subnet)";
+                            newNet._type = k.type;
+                            }
+                      });
                  };
                  v.newExtNet.push(newNet);
              });
