@@ -24,15 +24,9 @@
 <div class="panel panel-default">
     <div class="panel-body">
     <H3>Vlans</H3>
-<ul>
-{{#each data}}
- <li> <abbr title="{{dateFormat created format="llll"}} - {{dateFormat modified format="llll"}}" class="initialism">Modifié</abbr>
-  <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable vlanClear"></span>
- <span href="#edit" title="Modifier" class="glyphicon glyphicon-pencil clickable vlanEdit"></span>
- <span href="#view" data-toggle="tooltip" data-placement="top" title="Voir" class="glyphicon glyphicon-dashboard clickable aclView"></span> | 
-  {{nom}} </li>
-{{/each}}
-</ul>
+
+  {{> reactiveTable collection=data settings=settings}}
+
    </div>
 </div>
 
@@ -102,6 +96,24 @@
   </div>
  </div>
 </div>
+</template>
+
+
+<!-- ///  -->
+<template name="actionTmpl">
+ <small>
+  <abbr title="{{dateFormat created format="llll"}} by {{createdBy}}" class="initialism">Créé</abbr> 
+  <abbr title="{{dateFormat modified format="llll"}} by {{modifiedBy}}" class="initialism">Modifié</abbr> 
+ </small>
+ 
+  {{> button}}
+</template>
+
+<!-- ///  -->
+<template name="button">
+ <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable vlanClear"></span>
+ <span href="#edit" title="Modifier" class="glyphicon glyphicon-pencil clickable vlanEdit"></span>
+ <span href="#view" data-toggle="tooltip" data-placement="top" title="Voir" class="glyphicon glyphicon-dashboard clickable aclView"></span> 
 </template>
 
 

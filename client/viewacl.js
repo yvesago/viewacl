@@ -204,6 +204,19 @@ Template.updateMessageForm.helpers({
 Template.start.helpers({
     data : function () {
        return Vlans.find();},
+        settings: function () {
+        return {
+            rowsPerPage: 10,
+            showFilter: true,
+            useFontAwesome: false,
+            showNavigation: 'auto',
+            fields: [
+                //{ key : 'filtre', label: 'Filtres×',  tmpl: Template.filtresTmpl}, 
+                { key: 'ctl', label: ' ', tmpl: Template.actionTmpl},
+                { key : 'nom', label: 'Nom', sort : true}, 
+              ]
+        };
+    }
 });
 
 Template.updateVlanForm.helpers({

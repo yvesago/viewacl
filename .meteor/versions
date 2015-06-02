@@ -40,6 +40,7 @@ jeeeyul:moment-with-langs@2.8.3
 jquery@1.11.3_2
 json@1.0.3
 kaoskeya:accounts-admin-ui-bootstrap-3@0.3.3
+kasoki:reactive-table@0.3.21
 launch-screen@1.0.2
 livedata@1.0.13
 localstorage@1.0.3
@@ -54,6 +55,7 @@ minimongo@1.0.8
 mobile-status-bar@1.0.3
 momentjs:moment@2.8.4
 mongo@1.1.0
+mrt:just-i18n@0.3.0
 npm-bcrypt@0.7.8_2
 npm-container@1.0.0
 observe-sequence@1.0.6
