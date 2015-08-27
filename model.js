@@ -132,6 +132,12 @@ Schemas.vlans = new SimpleSchema({
          max: 200,
          unique: true
          },
+    extId: {
+         type: String,
+         max: 20,
+         optional: true,
+         unique: true
+         },
     owner:{
          type: [String],
          label: "Contact*",
