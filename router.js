@@ -56,7 +56,20 @@ Router.map(function () {
 //    data: function() {return Vlans.find()}
   });
   this.route('/api/vlans/createorupdate', function() {
-    var token = this.request.headers['x-auth-token'];
+    var access = Meteor.settings.RESTaccess;
+    var headers = this.request.headers;
+    var token = headers['x-auth-token'];
+    var ip = headers['x-forwarded-for'];
+    if (ip) check(ip, String);
+    if (token) check(token, String);
+
+    if ( token != access.token || access.ips.indexOf(ip) === -1 ) {
+      this.response.statusCode = 401;
+      this.response.setHeader("Content-Type", "application/json");
+      this.response.end('401: AccessDenied');
+      return;
+    };
+
     var data = this.request.body;
     var extId = data['id'];
     var nom = data.nom;

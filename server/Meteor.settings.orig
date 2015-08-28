@@ -1,6 +1,10 @@
 {
     "environment": "dev", 
     "appAdmin": "login1",
+    "RESTaccess": {
+        token: "xxxxx",
+        ips: ["127.0.0.1","192.168.11.7"]
+    },
     "public": {
         "appName": "ViewAcl",
         "lang": "en",
