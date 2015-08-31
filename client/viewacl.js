@@ -90,7 +90,7 @@ Template.registerHelper('helpMessage', function (opts) {
 function reload() {  
       var data = Template.currentData();
       Session.set('waiting', true);
-      Meteor.call('getVlan', data.content, Session.get('DNS'), function(e, res){
+      Meteor.call('getVlan', data, Session.get('DNS'), function(e, res){
           Session.set('objVlan', res);
           Session.set('waiting', false);
       });
@@ -213,7 +213,8 @@ Template.start.helpers({
             fields: [
                 //{ key : 'filtre', label: 'Filtres×',  tmpl: Template.filtresTmpl}, 
                 { key: 'ctl', label: ' ', tmpl: Template.actionTmpl},
-                { key : 'nom', label: 'Nom', sort : true}, 
+                { key : 'score', label: 'Importance', sort : true},
+                { key : 'nom', label: 'Nom'},
               ]
         };
     }

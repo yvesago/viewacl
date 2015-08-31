@@ -57,7 +57,7 @@ momentjs:moment@2.8.4
 mongo@1.1.0
 mrt:just-i18n@0.3.0
 npm-bcrypt@0.7.8_2
-npm-container@1.0.0
+npm-container@1.1.0
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 random@1.0.3
