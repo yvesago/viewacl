@@ -5,16 +5,19 @@ var Nmask = Meteor.npmRequire('netmask').Netmask;
 Meteor.methods({
     'getVlan': function getVlan(data, dns) {
         var vlan = Async.runSync(function(done) {
-            data = data.split("\n");
+            var content = data.content.split("\n");
 
             var j = [];
             Configs.find({}, {sort: {rank: 1}}).forEach(function(d) {
-                j.push({'reg':d.regex,'com':d.desc,'color':d.color});
+                j.push({'reg':d.regex,'com':d.desc,'color':d.color,'score':d.score});
             }); 
             var conf = {'fullPolicy' : j};
 
             var v = new Vlan(conf); 
-            v.Parse(data);
+            v.Parse(content);
+            // Update score
+            Vlans.update({'_id':data._id},
+                 {$set: { 'score': v.score }});
 
             v.newExtNet = [];
 

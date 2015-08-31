@@ -280,6 +280,14 @@ ViewAcl page
 </div>
 
  <h2>{{nom}}</h2> 
+<div class="panel panel-default">
+    <div class="panel-body">
+    Créé :  {{dateFormat created format="llll"}} par {{createdBy}} <br />
+    Modifié : {{dateFormat modified format="llll"}} par {{modifiedBy}} <br />
+    Importance : <strong>{{score}}</strong>
+    </div>
+</div>
+
 
 {{#if waiting}}
 {{> spinner}}
