@@ -115,6 +115,12 @@ Schemas.configs = new SimpleSchema({
          },
          optional: true
          },
+    score: {
+         type: Number,
+         label: "Importance",
+         optional: true,
+         defaultValue: 0
+         },
     rank : {
          type: Number,
          decimal: true,
@@ -130,8 +136,12 @@ Schemas.vlans = new SimpleSchema({
          type: String,
          label: 'Routeur et Vlan : description' + ' *',
          max: 200,
-         unique: true
+         unique: false
          },
+    score: {
+        type: Number,
+        optional: true,
+        },
     owner:{
          type: [String],
          label: "Contact*",
