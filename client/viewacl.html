@@ -112,8 +112,12 @@
 <!-- ///  -->
 <template name="button">
  <span href="#delete" title="Effacer" class="glyphicon glyphicon-trash clickable vlanClear"></span>
+{{#if extId}}
+ <span href="#" title="WebService Pushed" class="glyphicon glyphicon-circle-arrow-left" style="color:blue"></span>
+ {{else}}
  <span href="#edit" title="Modifier" class="glyphicon glyphicon-pencil clickable vlanEdit"></span>
- <span href="#view" data-toggle="tooltip" data-placement="top" title="Voir" class="glyphicon glyphicon-dashboard clickable aclView"></span> 
+{{/if}}
+ <span href="#view" data-toggle="tooltip" data-placement="top" title="Voir" class="glyphicon glyphicon-circle-arrow-right clickable aclView"></span> 
 </template>
 
 
