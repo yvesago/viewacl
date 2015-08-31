@@ -9,7 +9,7 @@ Meteor.methods({
 
             var j = [];
             Configs.find({}, {sort: {rank: 1}}).forEach(function(d) {
-                j.push({'reg':d.regex,'com':d.desc,'color':d.color});
+                j.push({'reg':d.regex,'com':d.desc,'color':d.color,'score':d.score});
             }); 
             var conf = {'fullPolicy' : j};
 
