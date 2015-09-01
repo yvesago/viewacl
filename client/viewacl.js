@@ -90,6 +90,7 @@ Template.registerHelper('helpMessage', function (opts) {
 function reload() {  
       var data = Template.currentData();
       Session.set('waiting', true);
+      if ( data === null ) {return;};
       Meteor.call('getVlan', data, Session.get('DNS'), function(e, res){
           Session.set('objVlan', res);
           Session.set('waiting', false);
@@ -239,7 +240,10 @@ Template.start.events ({
     },
    'click .aclView': function(e, t) {
       e.preventDefault();
-      return Router.go('/viewacl/'+this._id);
+      if (this.extId) {
+        return Router.go('/v/'+this.extId); }
+       else {
+        return Router.go('/viewacl/'+this._id); };
     },
    'click .vlanClear': function(e, t) {
       e.preventDefault();

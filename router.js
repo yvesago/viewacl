@@ -90,7 +90,7 @@ Router.map(function () {
         $set: {
            "nom": nom,
            "content" : content,
-           "owners" : owners,
+           "owner" : owners,
            "modified": new Date,
            "modifiedBy": 'REST@api'
         }} ,{"getAutoValues": false} );
@@ -101,7 +101,7 @@ Router.map(function () {
            "nom": nom,
            "extId": extId,
            "content" : content,
-           "owners" : owners,
+           "owner" : owners,
            "created": new Date,
            "createdBy": 'REST@api'
         },{"getAutoValues": false});
@@ -135,5 +135,14 @@ Router.map(function () {
       data: function() { 
            Session.set('waiting', false);
            return Vlans.findOne({_id: this.params._id}); }
+ });
+ this.route('ViewAclREST', {
+      path: '/v/:_id',
+      template: 'ViewAcl',
+      onBeforeAction: [filters.authenticate,filters.wait],
+      data: function() {
+           Session.set('waiting', false);
+           Session.set('objVlan', false);
+           return Vlans.findOne({'extId': this.params._id}); }
  });
 });

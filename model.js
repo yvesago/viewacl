@@ -140,7 +140,7 @@ Schemas.vlans = new SimpleSchema({
          },
     extId: {
          type: String,
-         max: 20,
+         max: 40,
          optional: true,
          unique: true
          },
@@ -202,7 +202,7 @@ Schemas.vlans = new SimpleSchema({
         label: "Modified Date",
         optional: true,
         autoValue: function () {
-            if (this.isUpdate) {
+            if (this.isUpdate && ! this.field("score").isSet) {
               return new Date;
             } else {
               this.unset();
@@ -214,7 +214,7 @@ Schemas.vlans = new SimpleSchema({
         label: "Modified By",
         optional: true,
         autoValue: function () {
-            if (this.isUpdate) {
+            if (this.isUpdate && ! this.field("score").isSet) {
               return Meteor.user().emails[0].address;
             } else {
               this.unset();

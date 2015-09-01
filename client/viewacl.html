@@ -272,7 +272,6 @@ ViewAcl page
   {{> header}}
 
 <div class="container">
-<span class="reload clickable btn btn-primary btn-fab btn-raised mdi-navigation-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>
 <div class="edit well">
  {{#with helpMessage n="aideACL"}}
  {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="clickable messACL">
@@ -286,8 +285,10 @@ ViewAcl page
  <h2>{{nom}}</h2> 
 <div class="panel panel-default">
     <div class="panel-body">
+<span class="reload clickable btn btn-primary btn-fab btn-raised mdi-navigation-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>
     Créé :  {{dateFormat created format="llll"}} par {{createdBy}} <br />
     Modifié : {{dateFormat modified format="llll"}} par {{modifiedBy}} <br />
+    Gestionnaire(s) : {{#each owner}}  <a href="mailto://{{this}}">{{this}}</a>, {{/each}} <br />
     Importance : <strong>{{score}}</strong>
     </div>
 </div>
@@ -297,6 +298,7 @@ ViewAcl page
 {{> spinner}}
 {{/if}}
 
+{{#if getVlan}}
 <div class="optAff">
 <div class="mDNS clickable togglebuttonxx">
  <label>
@@ -372,9 +374,13 @@ ViewAcl page
   {{> machine}}
 {{/each}}
 </fieldset>
+ </div>
+</div>
+{{/if}}
 
+<div class="panel panel-default">
+    <div class="panel-body">
 {{> tContent}}
-
 
 {{> updateMessageForm }}
  </div>
