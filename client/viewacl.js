@@ -213,7 +213,9 @@ Template.start.helpers({
             showNavigation: 'auto',
             fields: [
                 //{ key : 'filtre', label: 'Filtres×',  tmpl: Template.filtresTmpl}, 
-                { key: 'ctl', label: ' ', tmpl: Template.actionTmpl},
+                { key: 'ctl', label: ' ', tmpl: Template.actionTmpl,
+                  // virtual column for sorting by date
+                  fn: function (value, object) { return (object.modified || object.created); }},
                 { key : 'score', label: 'Importance', sort : true},
                 { key : 'nom', label: 'Nom'},
               ]
