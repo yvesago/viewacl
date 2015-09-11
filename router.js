@@ -74,7 +74,8 @@ Router.map(function () {
     var extId = data['id'];
     var nom = data.nom;
     var content = data.content;
-    var owners = data.owners;
+    var owners = new Array;
+    (typeof data.owners === 'string') ? owners.push(data.owners): owners = data.owners;
     check(extId, String);
     check(nom, String);
     check(content, String);
