@@ -73,11 +73,13 @@ Router.map(function () {
     var data = this.request.body;
     var extId = data['id'];
     var nom = data.nom;
+    var routeur = data.routeur;
     var content = data.content;
     var owners = new Array;
     (typeof data.owners === 'string') ? owners.push(data.owners): owners = data.owners;
     check(extId, String);
     check(nom, String);
+    check(routeur, String);
     check(content, String);
     check(owners, Array);
 
@@ -90,6 +92,7 @@ Router.map(function () {
         "_id": vlan._id }, {
         $set: {
            "nom": nom,
+           "routeur": routeur,
            "content" : content,
            "owner" : owners,
            "modified": new Date,
@@ -100,6 +103,7 @@ Router.map(function () {
       response = 'create';
       Vlans.insert({
            "nom": nom,
+           "routeur": routeur,
            "extId": extId,
            "content" : content,
            "owner" : owners,

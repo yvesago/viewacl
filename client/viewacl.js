@@ -217,6 +217,7 @@ Template.start.helpers({
                   // virtual column for sorting by date
                   fn: function (value, object) { return (object.modified || object.created); }},
                 { key : 'score', label: 'Importance', sort : true},
+                { key : 'routeur', label: 'Routeur'},
                 { key : 'nom', label: 'Nom'},
               ]
         };

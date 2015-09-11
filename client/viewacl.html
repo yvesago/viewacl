@@ -49,7 +49,7 @@
    <div class="modal-body" >
 
    {{> quickForm collection="Vlans" validation="keyup" id="upVlanForm"
-       template="bootstrap3-horizontal" fields="nom,content"
+       template="bootstrap3-horizontal" fields="nom,routeur,content"
        doc=selectedVlan type="update"}}
 
    </div>
@@ -69,7 +69,7 @@
    <div class="modal-body" >
 
    {{> quickForm collection="Vlans" validation="keyup" id="addVlanForm"
-       template="bootstrap3-horizontal" fields="nom,content" type="insert"}}
+       template="bootstrap3-horizontal" fields="nom,routeur,content" type="insert"}}
 
    </div>
   </div>
@@ -282,7 +282,7 @@ ViewAcl page
  {{/with}}
 </div>
 
- <h2>{{nom}}</h2> 
+ <h2>{{routeur}} {{nom}}</h2>
 <div class="panel panel-default">
     <div class="panel-body">
 <span class="reload clickable btn btn-primary btn-fab btn-raised mdi-navigation-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>

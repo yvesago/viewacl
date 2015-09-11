@@ -134,9 +134,15 @@ Schemas.configs = new SimpleSchema({
 Schemas.vlans = new SimpleSchema({
     nom: {
          type: String,
-         label: 'Routeur et Vlan : description' + ' *',
+         label: 'Vlan description' + ' *',
          max: 200,
          unique: false
+         },
+    routeur: {
+         type: String,
+         label: "Routeur",
+         max: 40,
+         optional: true
          },
     extId: {
          type: String,
