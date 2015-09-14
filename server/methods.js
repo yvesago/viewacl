@@ -11,7 +11,8 @@ Meteor.methods({
             Configs.find({}, {sort: {rank: 1}}).forEach(function(d) {
                 j.push({'reg':d.regex,'com':d.desc,'color':d.color,'score':d.score});
             }); 
-            var conf = {'fullPolicy' : j};
+            var conf = {'dnsTimeout': 10, 'fullPolicy' : j};
+            if (Meteor.settings.dnsTimeout) conf.dnsTimeout = Meteor.settings.dnsTimeout;
 
             var v = new Vlan(conf); 
             v.Parse(content);

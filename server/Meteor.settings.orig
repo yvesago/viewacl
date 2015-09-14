@@ -15,6 +15,7 @@
             "popupHeight": 610
         }
     },
+    "dnsTimeout": 20,
     "mail": {
       "smtp": "smtp://smtp.univ.org:25",
       "from": "<noreply@univ.org> ViewAcl (ne pas répondre)",
