@@ -41,6 +41,26 @@ var filters = {
  }
 };
 
+var method = { 
+  waitID : function () {
+    var content = Vlans.findOne({_id: this.params._id});
+    if (content)
+      Meteor.call('getVlan', content, Session.get('DNS'), function(e, res){
+                    Session.set('objVlan', res);
+                    Session.set('waiting', false);
+              });
+      this.next();
+  },
+  waitExtID : function () {
+    var content = Vlans.findOne({'extId': this.params._id});
+    if (content)
+      Meteor.call('getVlan', content, Session.get('DNS'), function(e, res){
+                    Session.set('objVlan', res);
+                    Session.set('waiting', false);
+              });
+      this.next();
+  }
+};
 
 Router.configure({
 //  layout: 'start',
@@ -55,6 +75,7 @@ Router.map(function () {
     onBeforeAction: [filters.authenticate,filters.wait],
 //    data: function() {return Vlans.find()}
   });
+// REST  
   this.route('/api/vlans/createorupdate', function() {
     var access = Meteor.settings.RESTaccess;
     var headers = this.request.headers;
@@ -115,11 +136,7 @@ Router.map(function () {
     this.response.setHeader("Content-Type", "application/json");
     this.response.setHeader("Access-Control-Allow-Origin", "*");
     this.response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    this.response.end(response + ' ...  ' + extId + ' ' + token
-     + '------------------' +  JSON.stringify(
-     this.request.body['owners']
-    )
-   );
+    this.response.end('OK ' + response );
   }, {where: 'server'});
   // url to force a CAS auth
   this.route('cas', {
@@ -136,18 +153,20 @@ Router.map(function () {
   });
  this.route('ViewAcl', { 
       path: '/viewacl/:_id',
-      onBeforeAction: [filters.authenticate,filters.wait],
+      template: 'ViewAcl',
+      onBeforeAction: [filters.authenticate,filters.wait,method.waitID],
       data: function() { 
-           Session.set('waiting', false);
+           Session.set('waiting', true);
+           //Session.set('objVlan', false);
            return Vlans.findOne({_id: this.params._id}); }
  });
  this.route('ViewAclREST', {
       path: '/v/:_id',
       template: 'ViewAcl',
-      onBeforeAction: [filters.authenticate,filters.wait],
+      onBeforeAction: [filters.authenticate,filters.wait,method.waitExtID],
       data: function() {
-           Session.set('waiting', false);
-           Session.set('objVlan', false);
+           Session.set('waiting', true);
+           //Session.set('objVlan', false);
            return Vlans.findOne({'extId': this.params._id}); }
  });
 });

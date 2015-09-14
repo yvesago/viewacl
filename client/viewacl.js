@@ -88,17 +88,14 @@ Template.registerHelper('helpMessage', function (opts) {
 // ViewAcl rendered, helpers, events
 
 function reload() {  
-      var data = Template.currentData();
+    var data = Template.currentData();
+    if ( data ) {
       Session.set('waiting', true);
-      if ( data === null ) {return;};
       Meteor.call('getVlan', data, Session.get('DNS'), function(e, res){
           Session.set('objVlan', res);
           Session.set('waiting', false);
       });
-};
-
-Template.ViewAcl.rendered= function () {
-    reload();
+    };
 };
 
 Template.registerHelper('parseLine', function (l) {
@@ -152,7 +149,7 @@ Template.ViewAcl.events ({
         (Session.get('DNS')) ?
             Session.set('DNS', false) :
             Session.set('DNS', true);
-        reload();
+        //reload();
     },
    'click .shortName': function(e, t) {
         e.preventDefault();
