@@ -175,7 +175,7 @@ Schemas.vlans = new SimpleSchema({
     content: {
          type: String,
          label: "Contenu" + ' *',
-         max: 40000,
+         max: 100000,
        //  optional: true,
          autoform: {
              rows: 30       // for textarea field
