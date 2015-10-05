@@ -100,6 +100,11 @@
 
 
 <!-- ///  -->
+<template name="typeTmpl">
+ {{#if _type}}<img src="/n{{_type}}.png" />{{/if}}
+</template>
+
+<!-- ///  -->
 <template name="actionTmpl">
  <small>
   <abbr title="{{dateFormat created format="llll"}} by {{createdBy}}" class="initialism">Créé</abbr> 

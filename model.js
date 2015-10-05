@@ -154,6 +154,11 @@ Schemas.vlans = new SimpleSchema({
         type: Number,
         optional: true,
         },
+    _type: {
+        type: String,
+        max: 20,
+        optional: true,
+        },
     owner:{
          type: [String],
          label: "Contact*",

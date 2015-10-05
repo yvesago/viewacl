@@ -150,6 +150,7 @@ Template.ViewAcl.events ({
             Session.set('DNS', false) :
             Session.set('DNS', true);
         //reload();
+
     },
    'click .shortName': function(e, t) {
         e.preventDefault();
@@ -214,6 +215,7 @@ Template.start.helpers({
                   // virtual column for sorting by date
                   fn: function (value, object) { return (object.modified || object.created); }},
                 { key : 'score', label: 'Importance', sort : true},
+                { key : '_type', label: 'Type', tmpl: Template.typeTmpl},
                 { key : 'routeur', label: 'Routeur'},
                 { key : 'nom', label: 'Nom'},
               ]

@@ -22,6 +22,7 @@ Meteor.methods({
 
             v.newExtNet = [];
 
+            var type ;
             // Post traitement
             // Create or update internal networks titles
              _.each(v.intNetworks, function(n) {
@@ -46,7 +47,16 @@ Meteor.methods({
                         }})
                 };
 
+            var t = n._type;
+            if ( !type ||
+                    (t === 'ServPub' && this._type !== 'ServPub') ||
+                    (t === 'ServInt' && this._type === 'Client')
+               ) type = t;
+
              });
+
+               Vlans.update({'_id':data._id},
+                  {$set: { '_type': type }});
 
             // Update external networks title
              _.each(v.extNet, function(n) {
