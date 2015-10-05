@@ -73,6 +73,8 @@ Meteor.methods({
                  v.newExtNet.push(newNet);
              });
 
+            v.intMachines = _(v.intMachines).sortBy('_ip');
+            v.extMachines = _(v.extMachines).sortBy('_ip');
 
             if(dns) {
             _.each(v.intMachines, function(i) { i.name(); });
