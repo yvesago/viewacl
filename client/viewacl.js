@@ -149,8 +149,7 @@ Template.ViewAcl.events ({
         (Session.get('DNS')) ?
             Session.set('DNS', false) :
             Session.set('DNS', true);
-        //reload();
-
+        reload();
     },
    'click .shortName': function(e, t) {
         e.preventDefault();
@@ -242,6 +241,7 @@ Template.start.events ({
     },
    'click .aclView': function(e, t) {
       e.preventDefault();
+      Session.set('objVlan', false);
       if (this.extId) {
         return Router.go('/v/'+this.extId); }
        else {

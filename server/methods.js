@@ -6,6 +6,7 @@ Meteor.methods({
     'getVlan': function getVlan(data, dns) {
         var vlan = Async.runSync(function(done) {
             var content = data.content.split("\n");
+            //console.log('METHODE start');
 
             var j = [];
             Configs.find({}, {sort: {rank: 1}}).forEach(function(d) {
@@ -105,6 +106,7 @@ Meteor.methods({
             };
 
             done(null, v);
+            //console.log('METHODE end');
         });
         return vlan.result;
     }

@@ -47,20 +47,24 @@ var filters = {
 
 var method = { 
   waitID : function () {
+    if (Session.get('objVlan') )
+        {this.next(); return;}
     var content = Vlans.findOne({_id: this.params._id});
     if (content)
       Meteor.call('getVlan', content, Session.get('DNS'), function(e, res){
-                    Session.set('objVlan', res);
                     Session.set('waiting', false);
+                    Session.set('objVlan', res);
               });
       this.next();
   },
   waitExtID : function () {
+    if (Session.get('objVlan') )
+        {this.next(); return;}
     var content = Vlans.findOne({'extId': this.params._id});
     if (content)
       Meteor.call('getVlan', content, Session.get('DNS'), function(e, res){
-                    Session.set('objVlan', res);
                     Session.set('waiting', false);
+                    Session.set('objVlan', res);
               });
       this.next();
   }
@@ -230,9 +234,9 @@ Router.map(function () {
  this.route('ViewAcl', { 
       path: '/viewacl/:_id',
       template: 'ViewAcl',
-      onBeforeAction: [filters.authenticate,filters.wait,method.waitID],
+      onBeforeAction: [filters.authenticate,filters.wait, method.waitID],
       data: function() { 
-           Session.set('waiting', true);
+           //Session.set('waiting', true);
            //Session.set('objVlan', false);
            return Vlans.findOne({_id: this.params._id}); }
  });
@@ -241,7 +245,7 @@ Router.map(function () {
       template: 'ViewAcl',
       onBeforeAction: [filters.authenticate,filters.wait,method.waitExtID],
       data: function() {
-           Session.set('waiting', true);
+           //Session.set('waiting', true);
            //Session.set('objVlan', false);
            return Vlans.findOne({'extId': this.params._id}); }
  });
