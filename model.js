@@ -213,7 +213,7 @@ Schemas.vlans = new SimpleSchema({
         label: "Modified Date",
         optional: true,
         autoValue: function () {
-            if (this.isUpdate && ! this.field("score").isSet) {
+            if (this.isUpdate && this.field("content").isSet) {
               return new Date;
             } else {
               this.unset();
@@ -225,7 +225,7 @@ Schemas.vlans = new SimpleSchema({
         label: "Modified By",
         optional: true,
         autoValue: function () {
-            if (this.isUpdate && ! this.field("score").isSet) {
+            if (this.isUpdate && this.field("content").isSet) {
               return Meteor.user().emails[0].address;
             } else {
               this.unset();
