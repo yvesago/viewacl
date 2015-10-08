@@ -48,7 +48,6 @@ Template.registerHelper('dateFormat', function(context, block) {
   });
 
 
-
 /*
  Hooks
 */
@@ -126,7 +125,13 @@ Template.ViewAcl.helpers({
     getVlan : function () { return Session.get('objVlan') || []; },
     vDNS : function () { return Session.get('DNS');},
     waiting : function () { return Session.get('waiting'); },
-    shortName : function () { return Session.get('shortName'); }
+    changeUrl : function () { return Meteor.settings.public.changeUrl; },
+    shortName : function () { return Session.get('shortName'); },
+    impColor : function () {
+           if (this.score > 5 && this.score <=10) return "info";
+           if (this.score > 10 && this.score <=20) return "warning";
+           if (this.score > 20) return "danger";
+           return "success"; }
 });
 
 Template.ViewAcl.events ({

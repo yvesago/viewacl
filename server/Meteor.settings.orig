@@ -8,6 +8,7 @@
     "public": {
         "appName": "ViewAcl",
         "lang": "en",
+        "changeUrl": "https://xxxxxxxx",
         "cas": {
             "loginUrl": "https://auth.univ.org/login",
             "serviceParam": "service",
