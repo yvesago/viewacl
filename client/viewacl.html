@@ -308,12 +308,7 @@ ViewAcl page
 <div class="optAff">
 <div class="mDNS clickable">
  <label>
-   DNS (long) <input checked="{{vDNS}}" type="checkbox"> 
- </label>
-</div>
-<div class="shortName clickable togglebuttonxx"> 
- <label>
-  Affichage compact <input checked="{{shortName}}" type="checkbox"> 
+   Analyse DNS (long) <input checked="{{vDNS}}" type="checkbox">
  </label>
 </div>
 </div>
@@ -380,7 +375,16 @@ ViewAcl page
   {{> machine}}
 {{/each}}
 </fieldset>
- </div>
+
+<div class="optAff">
+<div class="shortName clickable">
+ <label>
+  Affichage compact <input checked="{{shortName}}" type="checkbox">
+ </label>
+</div>
+</div>
+
+</div>
 </div>
 {{/if}}
 
