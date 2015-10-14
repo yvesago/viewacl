@@ -16,7 +16,10 @@ Meteor.methods({
             if (Meteor.settings.dnsTimeout) conf.dnsTimeout = Meteor.settings.dnsTimeout;
 
             var v = new Vlan(conf); 
+            var error;
+          try { // Valid for async method
             v.Parse(content);
+
             // Update score
             Vlans.update({'_id':data._id},
                  {$set: { 'score': v.score }});
@@ -105,7 +108,14 @@ Meteor.methods({
               });
             };
 
-            done(null, v);
+          } catch (err) {
+                 // console.log("Error:", err)
+                error = err;
+                v = new Vlan(conf);
+                v.name = "ERREUR : " + error.message;
+          };
+
+            done(error, v);
             //console.log('METHODE end');
         });
         return vlan.result;
