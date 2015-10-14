@@ -8,6 +8,33 @@ Meteor.startup(function () {
     });
 });
 
+/*
+
+Override accounts-ui-bootstrap-3
+
+*/
+
+// Override forgot password access
+Template._loginButtonsLoggedOutPasswordService.helpers({
+ inLoginFlow: function() {
+    return false;
+}
+});
+
+// Override changing password ui for CAS user
+Template._loginButtonsLoggedInDropdownActions.helpers({
+   allowChangingPassword: function() {
+    var user = Meteor.user();
+    var cas;
+    if( typeof(user.services) !== 'undefined') {
+        cas = (typeof(user.services.cas) === 'undefined');
+    };
+    return ( cas &&  (user.emails && user.emails[0] && user.emails[0].address));
+}
+});
+
+
+
 
 /* appName helper
 
@@ -218,7 +245,7 @@ Template.start.helpers({
                 { key: 'ctl', label: ' ', tmpl: Template.actionTmpl,
                   // virtual column for sorting by date
                   fn: function (value, object) { return (object.modified || object.created); }},
-                { key : 'score', label: 'Importance', sort : true},
+                { key : 'score', label: 'Importance', sort: 'descending'},
                 { key : '_type', label: 'Type', tmpl: Template.typeTmpl},
                 { key : 'routeur', label: 'Routeur'},
                 { key : 'nom', label: 'Nom'},
