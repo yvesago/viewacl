@@ -273,6 +273,7 @@ Template.start.events ({
     },
    'click .aclView': function(e, t) {
       e.preventDefault();
+      Session.set('DNS', false);
       Session.set('objVlan', false);
       if (this.extId) {
         return Router.go('/v/'+this.extId); }
