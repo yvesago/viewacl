@@ -152,7 +152,13 @@ Template.ViewAcl.helpers({
     getVlan : function () { return Session.get('objVlan') || []; },
     vDNS : function () { return Session.get('DNS');},
     waiting : function () { return Session.get('waiting'); },
-    changeUrl : function () { return Meteor.settings.public.changeUrl; },
+    changeUrl : function () {
+        var str = Meteor.settings.public.changeUrl;
+        var nom = this.nom.match(/^([A-Za-z1-9\.-]+?) - ([A-Za-z0-9]+?) /);
+        return ( nom !== null ) ?
+           str.replace(/ROUTEUR/,nom[1]).replace(/NOM/,nom[2]) :
+           null;
+        },
     shortName : function () { return Session.get('shortName'); },
     impColor : function () {
            if (this.score > 5 && this.score <=10) return "info";
