@@ -154,9 +154,10 @@ Template.ViewAcl.helpers({
     waiting : function () { return Session.get('waiting'); },
     changeUrl : function () {
         var str = Meteor.settings.public.changeUrl;
-        var nom = this.nom.match(/^([A-Za-z1-9\.-]+?) - ([A-Za-z0-9]+?) /);
-        return ( nom !== null ) ?
-           str.replace(/ROUTEUR/,nom[1]).replace(/NOM/,nom[2]) :
+        var nom = this.nom.match(/^([A-Za-z0-9\.\/]+?) /);
+        return ( nom !== null &&
+             this.routeur.match(/^([A-Za-z0-9\.-]+?)/) ) ?
+           str.replace(/ROUTEUR/,this.routeur).replace(/NOM/,nom[1]) :
            null;
         },
     shortName : function () { return Session.get('shortName'); },
