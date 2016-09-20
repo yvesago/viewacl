@@ -34,6 +34,10 @@ var filters = {
      Router.go('start');
      return;
  },
+ waitID: function () {
+    this.subscribe('vlanByID', this.params._id).wait();
+    this.next();
+ },
  wait: function () {
       this.render('loading');
       this.subscribe('messages').wait();
@@ -234,7 +238,7 @@ Router.map(function () {
  this.route('ViewAcl', { 
       path: '/viewacl/:_id',
       template: 'ViewAcl',
-      onBeforeAction: [filters.authenticate,filters.wait, method.waitID],
+      onBeforeAction: [filters.authenticate,filters.wait, filters.waitID, method.waitID],
       data: function() { 
            //Session.set('waiting', true);
            //Session.set('objVlan', false);
