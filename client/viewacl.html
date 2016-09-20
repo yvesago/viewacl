@@ -105,6 +105,13 @@
 </template>
 
 <!-- ///  -->
+<template name="nomTmpl">
+{{#if alertColor}}<span style="color:red">{{nom}}</span>
+ {{else}} {{nom}}
+{{/if}}
+</template>
+
+<!-- ///  -->
 <template name="actionTmpl">
  <small>
   <abbr title="{{dateFormat created format="llll"}} by {{createdBy}}" class="initialism">Créé</abbr> 

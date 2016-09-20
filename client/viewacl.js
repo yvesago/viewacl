@@ -168,6 +168,16 @@ Template.ViewAcl.helpers({
            return "success"; }
 });
 
+Template.nomTmpl.helpers({
+    alertColor : function () {
+        if ( this.nom.match(/RESCLI/) && (this._type === 'ServInt' || this._type === 'ServPub') )
+            return "red";
+        if ( this.nom.match(/SRVINT/) && this._type === 'ServPub')
+            return "red";
+        return "";
+    }
+});
+
 Template.ViewAcl.events ({
    'click .machine': function(e, t) {
         e.preventDefault();
@@ -255,7 +265,7 @@ Template.start.helpers({
                 { key : 'score', label: 'Importance', sort: 'descending'},
                 { key : '_type', label: 'Type', tmpl: Template.typeTmpl},
                 { key : 'routeur', label: 'Routeur'},
-                { key : 'nom', label: 'Nom'},
+                { key : 'nom', label: 'Nom', tmpl: Template.nomTmpl },
               ]
         };
     }
