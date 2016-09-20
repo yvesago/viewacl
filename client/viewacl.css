@@ -22,11 +22,31 @@ background-color:#FFFB02;
  font-size: 12px;
  width:15%;
 }
-.subsubtitle {
+.nsubServInt {
+ background-image: url("nServInt.png");
+ background-repeat: no-repeat;
+ margin:2px;
+ padding:2px 5px 2px 37px;
+ border:0px;
+ font-size: 12px;
+ width:20%;
+ height:32px;
+}
+.nsubServPub {
+ background-image: url("nServPub.png");
+ background-repeat: no-repeat;
+ margin:2px;
+ padding:2px 5px 2px 37px;
+ border:0px;
+ font-size: 12px;
+ width:20%;
+ height:32px;
+}
+.nsubClient {
  background-image: url("nClient.png");
  background-repeat: no-repeat;
- margin:2px; 
- padding:2px 5px 2px 37px; 
+ margin:2px;
+ padding:2px 5px 2px 37px;
  border:0px;
  font-size: 12px;
  width:20%;

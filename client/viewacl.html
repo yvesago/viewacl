@@ -418,7 +418,7 @@ ViewAcl page
 -->
 <template name="subnet">
 <fieldset class="subnet">
-<legend href="#viewNet" class="subsubtitle net clickable">subnet int: {{net.base}}/{{net.bitmask}}</legend>
+<legend href="#viewNet" class="nsub{{_type}} net clickable">subnet int: {{net.base}}/{{net.bitmask}}</legend>
 {{#each inMachine}}
   {{> machine}}
 {{/each}}
