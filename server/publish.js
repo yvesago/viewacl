@@ -30,10 +30,10 @@ Meteor.publish("vlanByID", function (vlanID){
   var user = Meteor.users.findOne({_id:this.userId});
   if (user) {
       if (Roles.userIsInRole(user, ["admin"]) || Roles.userIsInRole(user, ['reader']) ) {
-          return Vlans.find({_id: vlanID})
+          return Vlans.find({$or:[{_id: vlanID}, {extId: vlanID}]})
       }
       else {
-          return Vlans.find({_id: vlanID , owner: user.emails[0].address});
+          return Vlans.find({$or:[{_id: vlanID}, {extId: vlanID}], owner: user.emails[0].address});
           }
   };
   this.stop();

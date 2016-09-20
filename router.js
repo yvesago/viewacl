@@ -247,7 +247,7 @@ Router.map(function () {
  this.route('ViewAclREST', {
       path: '/v/:_id',
       template: 'ViewAcl',
-      onBeforeAction: [filters.authenticate,filters.wait,method.waitExtID],
+      onBeforeAction: [filters.authenticate,filters.wait, filters.waitID, method.waitExtID],
       data: function() {
            //Session.set('waiting', true);
            //Session.set('objVlan', false);
