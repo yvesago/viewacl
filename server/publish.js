@@ -11,7 +11,7 @@ Meteor.publish("vlans", function (){
   if (user) {
       if (Roles.userIsInRole(user, ["admin"]) || Roles.userIsInRole(user, ['reader']) ) {
            //  console.log('   for admin  ',user.emails[0].address);
-          return Vlans.find({},{fields: {'content':0}})
+          return Vlans.find({},{fields: {'content':0, 'owner':0}})
       }
       else {
            //  console.log('   for user  ',user.emails[0].address);
