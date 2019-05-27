@@ -30,7 +30,7 @@
    </div>
 </div>
 
-<span title="Ajouter" class="vlanAdd clickable btn btn-primary btn-fab btn-raised mdi-content-add"></span>
+<span title="Ajouter" class="vlanAdd clickable btn btn-primary btn-raised glyphicon glyphicon-plus"></span>
 
 {{> insertVlanForm }}
 {{> updateVlanForm }}
@@ -160,7 +160,7 @@
     </div>
 </div>
 
-<span title="Ajouter" class="confAdd clickable btn btn-primary btn-fab btn-raised mdi-content-add"></span>
+<span title="Ajouter" class="confAdd clickable btn btn-primary btn-raised glyphicon glyphicon-plus"></span>
 
 </div>
 
@@ -286,8 +286,9 @@ ViewAcl page
 <div class="container">
 <div class="edit well">
  {{#with helpMessage n="aideACL"}}
- {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="clickable messACL">
-  {{#markdown}}{{mContent}}{{/markdown}}</span>
+ {{#if isInRole 'admin'}}
+  {{#markdown}}{{mContent}}{{/markdown}}
+  <span data-toggle="modal" href="#upMessForm" class="glyphicon glyphicon-pencil clickable messACL"></span>
   {{else}}
   {{#markdown}}{{mContent}}{{/markdown}}
  {{/if}}
@@ -297,13 +298,13 @@ ViewAcl page
  <h2>{{routeur}} {{nom}}</h2>
 <div class="panel panel-default">
   <div class="panel-body">
-<span class="reload clickable btn btn-primary btn-fab btn-raised mdi-navigation-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>
+<span class="reload clickable btn btn-primary btn-raised glyphicon glyphicon-refresh" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span>
     Créé :  {{dateFormat created format="llll"}} par {{createdBy}} <br />
     Modifié : {{dateFormat modified format="llll"}} par {{modifiedBy}} <br />
     Lecteur(s) : {{#each owner}}  <a href="mailto://{{this}}">{{this}}</a>, {{/each}} <br /><br />
    <div class="alert alert-dismissable alert-{{impColor}}">
     Importance <span class="badge">{{score}}</span> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-    <a href="{{changeUrl}}" target="_blank" class="alert-link">&gt;&gt; modifier les ACls <span class="mdi-action-trending-up"></span></a>
+    <a href="{{changeUrl}}" target="_blank" class="alert-link">&gt;&gt; modifier les ACls <span class="glyphicon glyphicon-send"></span></a>
 {{#if waiting}}
 {{> spinner}}
 {{/if}}
@@ -331,8 +332,9 @@ ViewAcl page
 <legend class="subtitle">Accès complet aux réseaux internes</legend>    
 <div class="edit well well-sm">
  {{#with helpMessage n="aideFull"}}
- {{#if isInRole 'admin'}}<span data-toggle="modal" href="#upMessForm" class="clickable messACL">
-  {{#markdown}}{{mContent}}{{/markdown}}</span>
+ {{#if isInRole 'admin'}}
+  {{#markdown}}{{mContent}}{{/markdown}}
+  <span data-toggle="modal" href="#upMessForm" class="glyphicon glyphicon-pencil clickable messACL"></span>
   {{else}}
   {{#markdown}}{{mContent}}{{/markdown}}
  {{/if}}

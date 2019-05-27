@@ -1,9 +1,11 @@
+
+
 /*
  Set title with Meteor.settings.public.appName
  Allow to change name for test, dev, prod environments
 */
 Meteor.startup(function () {
-    Meteor.autorun(function () {
+    Tracker.autorun(function () {
         document.title = Meteor.settings.public.appName;
     });
 });
@@ -262,7 +264,7 @@ Template.start.helpers({
                 { key: 'ctl', label: ' ', tmpl: Template.actionTmpl,
                   // virtual column for sorting by date
                   fn: function (value, object) { return (object.modified || object.created); }},
-                { key : 'score', label: 'Importance', sort: 'descending'},
+                { key : 'score', label: 'Importance', sortOrder: 1, sortDirection: 'descending'},
                 { key : '_type', label: 'Type', tmpl: Template.typeTmpl},
                 { key : 'routeur', label: 'Routeur'},
                 { key : 'nom', label: 'Nom', tmpl: Template.nomTmpl },

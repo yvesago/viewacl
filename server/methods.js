@@ -1,6 +1,6 @@
 
-var Vlan = Meteor.npmRequire('parseacl');
-var Nmask = Meteor.npmRequire('netmask').Netmask;
+var Vlan = Npm.require('parseacl');
+var Nmask = Npm.require('netmask').Netmask;
 
 Meteor.methods({
     'getVlan': function getVlan(data, dns) {

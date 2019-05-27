@@ -1,0 +1,33 @@
+{
+  "name": "viewacl",
+  "version": "1.0.0",
+  "description": "viewacl - Meteor app to view Cisco Acls",
+  "main": "global.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yvesago/viewacl.git"
+  },
+  "author": "yvesago",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yvesago/viewacl/issues"
+  },
+  "homepage": "https://github.com/yvesago/viewacl#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.4.4",
+    "@fortawesome/fontawesome-free": "^5.8.2",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^3.0.6",
+    "buffertools": "^2.1.6",
+    "ldapjs": "^1.0.2",
+    "netmask": "^1.0.6",
+    "parseacl": "^0.4.0",
+    "simpl-schema": "^1.5.5"
+  }
+}

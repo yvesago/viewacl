@@ -2,6 +2,9 @@
 // Server side collections
 // for server side cache
 
+import SimpleSchema from 'simpl-schema';
+
+
 Networks = new Meteor.Collection("networks");
 
 var ServerSchemas = {};

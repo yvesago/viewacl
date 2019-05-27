@@ -2,6 +2,9 @@
 /////////////////////////////
 // Vlans model
 
+import SimpleSchema from 'simpl-schema';
+SimpleSchema.extendOptions(['autoform', 'decimal']);
+
 Messages = new Meteor.Collection("messages");
 Vlans = new Meteor.Collection("vlans");
 Configs = new Meteor.Collection("configs");
@@ -160,7 +163,7 @@ Schemas.vlans = new SimpleSchema({
         optional: true,
         },
     owner:{
-         type: [String],
+         type: Array, //[String],
          label: "Contact*",
          optional: true,
          minCount: 1,
@@ -177,6 +180,7 @@ Schemas.vlans = new SimpleSchema({
            }
          }
          },
+    'owner.$': {type: String}, //for array [String]
     content: {
          type: String,
          label: "Contenu" + ' *',
