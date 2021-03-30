@@ -26,7 +26,7 @@
     "bcrypt": "^3.0.6",
     "buffertools": "^2.1.6",
     "ldapjs": "^1.0.2",
-    "netmask": "^1.0.6",
+    "netmask": "^2.0.1",
     "parseacl": "^0.4.0",
     "simpl-schema": "^1.5.5"
   }
