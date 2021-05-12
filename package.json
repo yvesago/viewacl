@@ -28,6 +28,6 @@
     "ldapjs": "^1.0.2",
     "netmask": "^1.0.6",
     "parseacl": "^0.4.0",
-    "simpl-schema": "^1.5.5"
+    "simpl-schema": "^1.10.2"
   }
 }
